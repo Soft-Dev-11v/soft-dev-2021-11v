@@ -1,0 +1,57 @@
+<!--
+
+=========================================================
+* Pixel Pro Bootstrap 5 UI Kit
+=========================================================
+
+* Product Page: https://themesberg.com/product/ui-kit/pixel-pro-premium-bootstrap-5-ui-kit
+* Copyright 2021 Themesberg (https://www.themesberg.com)
+
+* Coded by https://themesberg.com
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. Contact us if you want to remove it.
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head> 
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- Primary Meta Tags -->
+
+<title>
+    Flask Pixel PRO - {% block title %}{% endblock %} | AppSeed
+</title>
+<!-- Fontawesome -->
+<link type="text/css" href="/static/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+
+<!-- Glide JS -->
+<link rel="stylesheet" href="/static/assets/vendor/@glidejs/glide/dist/css/glide.core.min.css">
+<link rel="stylesheet" href="/static/assets/vendor/@glidejs/glide/dist/css/glide.theme.min.css">
+
+<!-- Pixel CSS -->
+<link type="text/css" href="/static/assets/css/pixel.css" rel="stylesheet">
+
+{% block stylesheets %}{% endblock stylesheets %}
+
+</head>
+<body>                   
+    <main>
+
+        {% include 'includes/preloader.html' %}
+
+        {% block content %}{% endblock content %}
+
+    </main>
+    
+    {% include 'includes/RecipesFooter.html' %}
+    
+    {% include 'includes/scripts.html' %}
+
+    <!-- Specific Page JS goes HERE  -->
+    {% block javascripts %}{% endblock javascripts %}
+
+</body>
+</html>
