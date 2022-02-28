@@ -103,7 +103,7 @@ def login():
             
             if bc.check_password_hash(user.password, password):
                 login_user(user)
-                return render_template('home/Recipes.html')
+                return redirect('/Recipes.html')
             else:
                 msg = "Wrong password. Please try again."
         else:
@@ -137,15 +137,20 @@ def index(path):
 @app.route('/sitemap.xml')
 def sitemap():
     return send_from_directory(os.path.join(app.root_path, 'static'), 'sitemap.xml')
-@app.route('/Recipies.html', methods=['GET', 'POST'])
 
+
+@app.route('/Recipes.html', methods=['GET', 'POST'])
 def recipies():
+    print('zdr')
     form = RecipesForm(request.form)
     msg = None
-    if request.method == 'POST'():
-        ingredients = request.form.get('ingredients', '', type=str)
+    print('zdr')
+    if request.method == 'POST':
+        print('zdr')
+        ingredients = request.form('ingredients', '', type=str)
         response = api.search_recipes_by_ingredients(ingredients)
         data = response.json()
-        msg = data[0]['title']
+        #msg = data[0]['title']
+    print('zdr')
     return render_template('home/Recipies.html', form = form, msg=msg)
         
