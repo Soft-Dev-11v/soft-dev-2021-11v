@@ -7,18 +7,12 @@
 {% block content %}
 <form method="post" action="" class="mt-4">
 
-    <div class="section section-lg pt-4">
-        <div class="container">
-            <div class="row mb-4 mb-lg-5">
-                <div class="col-lg-4 col-sm-6">
-                    <div class="mb-3">
-                        <label for="exampleFormControlTextarea1">Insert ingredients</label>
-                        <textarea class="form-control" placeholder="Enter your message..." id="exampleFormControlTextarea1" rows="4"></textarea>
-                  
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="form-group mb-4">
+        <label for="insertingredients">Insert Ingredients</label>
+        <div class="input-group">
+            {{ form.ingredients.label }}<br>
+            {{ form.ingredients(size=32) }}<br>
+        </div>  
     </div>
     <button class="btn btn-block btn-primary" type="submit">Recipies</button>
 </form>

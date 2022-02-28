@@ -145,10 +145,11 @@ def recipies():
     msg = None
     if request.method == 'POST':
         print('zdr')
-        ingredients = request.form('ingredients', '', type=str)
+        ingredients = request.form['ingredients']
         response = api.search_recipes_by_ingredients(ingredients)
         data = response.json()
         msg = data[0]['title']
+        # print(data[0]['title'])
         print(msg)
-    return render_template('home/Recipes.html', msg=msg)
+    return render_template('home/Recipes.html', form=form, msg=msg)
         
