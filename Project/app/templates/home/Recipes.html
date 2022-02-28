@@ -23,27 +23,35 @@
                             <th scope="col" id="Images">Image</th>
                         </tr>
                         <tr>
-                            <th scope="row" id="firstyear" rowspan="2">
+                            <th scope="row" id="ingredients">
                                 <form method="post" action="" class="mt-4">
-                                <div class="form-group mb-4">
-                                    <label for="insertingredients">Insert Ingredients</label>
-                                    <div class="input-group">
-                                        {{ form.label }}<br>
-                                        {{ form.ingredients(size=32) }}<br>
-                                    </div>  
-                                </div>
-                                <button class="btn btn-block btn-primary" type="submit">Recipies</button>
+                                    <div class="form-group mb-4">
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlTextarea1">Enter Ingredients</label>
+                                            {{ form.ingredients(class="form-control") }}
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-block btn-primary" type="submit">Get recipies</button>
                                 </form>
                             </th>
-                            <th scope="row" id="Bolter" headers="firstyear teacher">
+                            <th scope="row" id="recipies">
                                 <p class="text-center">
-                                    {% if msg %}
-                                        {{ msg | safe }}
+                                    {% if recipies %}
+                                        {{ recipies | safe }}
                                     {% else %}
                                         
                                     {% endif %}  
                                 </p>  
                             </th>
+                            <th scope="row" id="images">
+                                {% if image %}
+                                    <img src = "{{image | safe}}">
+                                {% else %}
+
+                                {% endif %}
+
+                            </th>
+
                             
                         </tr>
                     </table>
