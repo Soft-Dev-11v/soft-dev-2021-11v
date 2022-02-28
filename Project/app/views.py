@@ -141,16 +141,14 @@ def sitemap():
 
 @app.route('/Recipes.html', methods=['GET', 'POST'])
 def recipies():
-    print('zdr')
     form = RecipesForm(request.form)
     msg = None
-    print('zdr')
     if request.method == 'POST':
         print('zdr')
         ingredients = request.form('ingredients', '', type=str)
         response = api.search_recipes_by_ingredients(ingredients)
         data = response.json()
-        #msg = data[0]['title']
-    print('zdr')
-    return render_template('home/Recipies.html', form = form, msg=msg)
+        msg = data[0]['title']
+        print(msg)
+    return render_template('home/Recipes.html', msg=msg)
         
