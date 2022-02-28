@@ -142,15 +142,17 @@ def sitemap():
 @app.route('/Recipes.html', methods=['GET', 'POST'])
 def recipies():
     form = RecipesForm(request.form)
-    recipies = None
+    recipies = []
     image = None
     if request.method == 'POST':
         print('zdr')
         ingredients = request.form['ingredients']
         response = api.search_recipes_by_ingredients(ingredients)
         data = response.json()
-        recipies = data[0]['title']
-        image = data[0]['image'];
+        for i in data:
+            recipies.append(i['title'])
+
+        print(recipies)
         
     return render_template('home/Recipes.html', form=form, recipies=recipies, image = image)
         
