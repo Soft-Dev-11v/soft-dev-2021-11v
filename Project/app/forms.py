@@ -19,4 +19,4 @@ class RegisterForm(FlaskForm):
 	email       = StringField  (u'Email'     , validators=[DataRequired(), Email()])
 
 class RecipesForm(FlaskForm):
-	ingredients = StringField   (u'Ingredients')
+	ingredients = StringField   (u'Ingredients', validators= [DataRequired()])

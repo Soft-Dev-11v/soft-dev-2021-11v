@@ -4,7 +4,9 @@ Copyright (c) 2019 - present AppSeed.us
 """
 
 # Python modules
-import os, logging 
+import os, logging
+import spoonacular as sp
+
 
 # Flask modules
 from flask               import render_template, request, url_for, redirect, send_from_directory
@@ -12,10 +14,12 @@ from flask_login         import login_user, logout_user, current_user, login_req
 from werkzeug.exceptions import HTTPException, NotFound, abort
 from jinja2              import TemplateNotFound
 
+
 # App modules
 from app        import app, lm, db, bc
 from app.models import Users
-from app.forms  import LoginForm, RegisterForm
+from app.forms  import LoginForm, RegisterForm, RecipesForm
+api = sp.API("c076abf0d516455cbbb6dfecb9299e87")
 
 # provide login manager with load_user callback
 @lm.user_loader
@@ -133,3 +137,15 @@ def index(path):
 @app.route('/sitemap.xml')
 def sitemap():
     return send_from_directory(os.path.join(app.root_path, 'static'), 'sitemap.xml')
+@app.route('/Recipies.html', methods=['GET', 'POST'])
+
+def recipies():
+    form = RecipesForm(request.form)
+    msg = None
+    if form.validate_on_submit():
+        ingredients = request.form.get('ingredients', '', type=str)
+        response = api.search_recipes_by_ingredients(ingredients)
+        data = response.json()
+        msg = data[0]['title']
+    return render_template('home/Recipies.html', form = form, msg=msg)
+        
