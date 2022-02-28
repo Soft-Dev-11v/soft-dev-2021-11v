@@ -142,7 +142,7 @@ def sitemap():
 def recipies():
     form = RecipesForm(request.form)
     msg = None
-    if form.validate_on_submit():
+    if request.method == 'POST'():
         ingredients = request.form.get('ingredients', '', type=str)
         response = api.search_recipes_by_ingredients(ingredients)
         data = response.json()
