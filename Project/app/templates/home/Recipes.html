@@ -5,6 +5,13 @@
 {% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}
+<p class="text-center">
+    {% if msg %}
+        {{ msg | safe }}
+    {% else %}
+        Add your credentials
+    {% endif %}  
+</p>  
 <form method="post" action="" class="mt-4">
 
     <div class="form-group mb-4">
