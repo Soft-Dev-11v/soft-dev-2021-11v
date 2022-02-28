@@ -5,24 +5,54 @@
 {% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}
-<p class="text-center">
-    {% if msg %}
-        {{ msg | safe }}
-    {% else %}
-        Add your credentials
-    {% endif %}  
-</p>  
-<form method="post" action="" class="mt-4">
 
-    <div class="form-group mb-4">
-        <label for="insertingredients">Insert Ingredients</label>
-        <div class="input-group">
-            {{ form.ingredients.label }}<br>
-            {{ form.ingredients(size=32) }}<br>
-        </div>  
+
+
+<div class="section section-lg">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="mb-4">
+                    <span class="h5">Ingredients</span>
+                </div>
+                <div class="mb-5">
+                    <table class="table">
+                        <tr>
+                            <th scope="col" id="ingredients">Ingredients</th>
+                            <th scope="col" id="Recipies">Recipies</th>
+                            <th scope="col" id="Images">Image</th>
+                        </tr>
+                        <tr>
+                            <th scope="row" id="firstyear" rowspan="2">
+                                <form method="post" action="" class="mt-4">
+                                <div class="form-group mb-4">
+                                    <label for="insertingredients">Insert Ingredients</label>
+                                    <div class="input-group">
+                                        {{ form.label }}<br>
+                                        {{ form.ingredients(size=32) }}<br>
+                                    </div>  
+                                </div>
+                                <button class="btn btn-block btn-primary" type="submit">Recipies</button>
+                                </form>
+                            </th>
+                            <th scope="row" id="Bolter" headers="firstyear teacher">
+                                <p class="text-center">
+                                    {% if msg %}
+                                        {{ msg | safe }}
+                                    {% else %}
+                                        
+                                    {% endif %}  
+                                </p>  
+                            </th>
+                            
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+        </div>
     </div>
-    <button class="btn btn-block btn-primary" type="submit">Recipies</button>
-</form>
+</div>
 {% endblock content %}
 
 {% block javascripts %}{% endblock javascripts %}
