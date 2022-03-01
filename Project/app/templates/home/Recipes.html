@@ -42,7 +42,9 @@
                                         
                                     {% endif %}   -->
                                     {% for i in recipies %}
-                                        {{i | safe}}
+                                    <tr>
+                                        <th>{{i | safe}}</th>
+                                    </tr>
                                     {% endfor %}
                                 </p>  
                             </th>
