@@ -12,16 +12,8 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-12">
-                <div class="mb-4">
-                    <span class="h5">Ingredients</span>
-                </div>
                 <div class="mb-5">
                     <table class="table">
-                        <tr>
-                            <th scope="col" id="ingredients">Ingredients</th>
-                            <th scope="col" id="Recipies">Recipies</th>
-                            <th scope="col" id="Images">Image</th>
-                        </tr>
                         <tr>
                             <th scope="row" id="ingredients">
                                 <form method="post" action="" class="mt-4">
@@ -36,6 +28,7 @@
                             </th>
                             <th scope="row" id="recipies">
                                 <p class="text-center">
+
                                     {% for recipie in recipies %}
                                     <tr>
                                         <th>{{recipie | safe}}</th>
