@@ -36,28 +36,13 @@
                             </th>
                             <th scope="row" id="recipies">
                                 <p class="text-center">
-                                    <!-- {% if recipies %}
-                                        {{ recipies | safe }}
-                                    {% else %}
-                                        
-                                    {% endif %}   -->
-                                    {% for i in recipies %}
+                                    {% for recipie in recipies %}
                                     <tr>
-                                        <th>{{i | safe}}</th>
+                                        <th>{{recipie | safe}}</th>
                                     </tr>
                                     {% endfor %}
                                 </p>  
                             </th>
-                            <th scope="row" id="images">
-                                {% if image %}
-                                    <img src = "{{image | safe}}">
-                                {% else %}
-
-                                {% endif %}
-
-                            </th>
-
-                            
                         </tr>
                     </table>
 

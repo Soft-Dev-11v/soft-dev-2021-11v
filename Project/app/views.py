@@ -143,7 +143,7 @@ def sitemap():
 def recipies():
     form = RecipesForm(request.form)
     recipies = []
-    image = None
+    images = []
     if request.method == 'POST':
         print('zdr')
         ingredients = request.form['ingredients']
@@ -151,8 +151,10 @@ def recipies():
         data = response.json()
         for i in data:
             recipies.append(i['title'])
-
-        print(recipies)
+            images.append(i['image'])
         
-    return render_template('home/Recipes.html', form=form, recipies=recipies, image = image)
+
+
+        
+    return render_template('home/Recipes.html', form=form, recipies=recipies, images = images)
         
