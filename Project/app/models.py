@@ -56,6 +56,25 @@ class Recipe():
 
         return self
 
+class FavouriteCon():
+
+    __tablename__ = 'FavouriteCon'
+    
+    userId      = db.Column(db.Integer)
+    recipeId    = db.Column(db.Integer)
+    
+    def __init__ (self, userId, recipeId):
+    	self.userId      = userId
+    	self.recipeId    = recipeId
+    	
+    def save(self):
+    	#inject self into db session
+    	db.session.add (self)
+    	#commit change and save the object
+    	db.session.commit( )
+
+
+
 class Ingredients():
 
     __tablename__ = 'Ingredients'
