@@ -9,7 +9,7 @@ import spoonacular as sp
 
 
 # Flask modules
-from flask               import render_template, request, url_for, redirect, send_from_directory
+from flask               import render_template, request, url_for, redirect, send_from_directory, jsonify
 from flask_login         import login_user, logout_user, current_user, login_required
 from werkzeug.exceptions import HTTPException, NotFound, abort
 from jinja2              import TemplateNotFound
@@ -144,15 +144,11 @@ def recipies():
     form = RecipesForm(request.form)
     recipies = []
     if request.method == 'POST':
-        print('zdr')
         ingredients = request.form['ingredients']
         response = api.search_recipes_by_ingredients(ingredients)
         data = response.json()
         for i in data:
             recipies.append(i['title'])
-        
-
-
-        
+        return jsonify(recipies)   
     return render_template('home/Recipes.html', form=form, recipies=recipies)
         
