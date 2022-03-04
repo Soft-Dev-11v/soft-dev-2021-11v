@@ -19,6 +19,7 @@ from jinja2              import TemplateNotFound
 from app        import app, lm, db, bc
 from app.models import Users
 from app.forms  import LoginForm, RegisterForm, RecipesForm
+from app        import util
 api = sp.API("c076abf0d516455cbbb6dfecb9299e87")
 
 # provide login manager with load_user callback
@@ -142,13 +143,17 @@ def sitemap():
 @app.route('/Recipes.html', methods=['GET', 'POST'])
 def recipies():
     form = RecipesForm(request.form)
+    recipiesA = []
     recipies = []
     if request.method == 'POST':
         ingredients = request.form['ingredients']
         response = api.search_recipes_by_ingredients(ingredients)
         data = response.json()
         for i in data:
-            recipies.append(i['title'])
-        return jsonify(recipies)   
+            recipiesA.append(util.Recipie(i))
+        for i in recipiesA:
+            recipies.append(i.title)
+        print(recipies) 
+        return jsonify(recipies)  
     return render_template('home/Recipes.html', form=form, recipies=recipies)
         

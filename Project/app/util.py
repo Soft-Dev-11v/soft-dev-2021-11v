@@ -27,3 +27,27 @@ def g_db_del( obj ):
 
     if obj:
         db.session.delete ( obj )
+
+class Ingredient:
+    unit = ""
+    id = 0
+    name = ""
+    amount = 0
+    def __init__(self, ingredient):
+        unit = ingredient["unit"]
+        id = ingredient["id"]
+        name = ingredient["name"]
+        amount = ingredient["amount"]
+
+
+class Recipie:
+    title = ""
+    id = 0
+    ingredients = []
+    def __init__(self, recipie):
+        self.title = recipie["title"]
+        self.id = recipie["id"]
+        for i in recipie["usedIngredients"]:
+            self.ingredients.append(Ingredient(i))
+        for i in recipie["missedIngredients"]:
+            self.ingredients.append(Ingredient(i))
