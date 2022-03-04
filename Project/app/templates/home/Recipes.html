@@ -35,7 +35,6 @@
         </div>
     </div>
 </div>
-<<<<<<< HEAD
 
 <div class="section section-md pt-0">
     <div class="container">
@@ -59,7 +58,6 @@
         </div>
     </div>
 </div>
-=======
 <script src="https://code.jquery.com/jquery-3.5.1.js"
           integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
           crossorigin="anonymous">
@@ -79,8 +77,10 @@
         {
             for(recipie in data){
                 var value = data[recipie]
-                var row = "<tr><td>" + value + "</td></tr>";
-                $('#recipietable').append(row);
+                // var row = "<tr><td>" + value + "</td></tr>";
+                // $('#recipietable').append(row);
+                var buttonRow = "<button class=accordion-button type=button data-bs-toggle=collapse data-bs-target=#collapseOne aria-expanded=true aria-controls=collapseOne>" + value + "</button>";
+                $('#headingOne').append(buttonRow);
             }
         }
         })
@@ -89,7 +89,6 @@
 
 
   
->>>>>>> c4b3dd72c25f09112eaf3dbe511abca74ef8f11b
 
 {% endblock content %}
 
