@@ -69,11 +69,12 @@
         },
         success:function(data)
         {
+            $('td').remove();
             for(recipie in data){
                 var value = data[recipie]
                 // var row = "<tr><td>" + value + "</td></tr>";
                 // $('#recipietable').append(row);
-                var buttonRow = "<button class=accordion-button type=button data-bs-toggle=collapse data-bs-target=#collapseOne aria-expanded=true aria-controls=collapseOne>" + value + "</button>";
+                var buttonRow = "<h2 class=accordion-header id=headingOne><button class=accordion-button type=button data-bs-toggle=collapse data-bs-target=" + value + " aria-expanded=true aria-controls=collapseOne>" + value + "</button>";
                 $('#headingOne').append(buttonRow);
             }
         }
