@@ -153,7 +153,7 @@ def recipies():
             recipiesA.append(util.Recipie(i))
         for i in recipiesA:
             recipies.append(i.title)
-        print(recipies) 
+        # print(recipies) 
         return jsonify(recipies)  
     return render_template('home/Recipes.html', form=form, recipies=recipies)
         
