@@ -1,14 +1,11 @@
 const express = require("express");
 const app = express();
 const drive = require("./drive");
-const path = require("path");
-const fs = require("fs");
-
-const filePath = path.join(__dirname, "image.jpg");
+const { readImage } = require("./middleware");
 
 app.use(express.json());
 
-app.put("/image/:imageId", async (req, res) => {
+app.put("/image/:imageId", readImage, async (req, res, next) => {
   // Andreika
   try {
     const imageId = req.params.imageId;
@@ -23,38 +20,44 @@ app.put("/image/:imageId", async (req, res) => {
     });
     res.send(imageId);
   } catch (err) {
-    res.status(500).send({ [err.name]: err.message });
+    next(err);
   }
 });
 
-app.post("/image", async (req, res) => {
+app.post("/image", readImage, async (req, res, next) => {
   try {
     const response = await drive.files.create({
       requestBody: {
-        name: "image.jpg",
-        mimeType: "image/jpg",
+        name: req.image.originalFilename,
+        mimeType: req.image.mimetype,
       },
       media: {
-        mimeType: "image/jpg",
-        body: fs.createReadStream(filePath),
+        mimeType: req.image.mimetype,
+        body: req.image.readable,
       },
     });
 
     res.send(response.data);
   } catch (err) {
-    console.log(err);
-    res.send({ [err.name]: err.message });
+    next(err);
   }
 });
 
-app.delete("/image/:imageId", async (req, res) => {
+app.delete("/image/:imageId", async (req, res, next) => {
   try {
     const { imageId } = req.params;
     const response = await drive.files.delete({ fileId: imageId });
     res.send(response.data);
-  } catch (error) {
-    res.status(500).send({ [error.name]: error.message });
+  } catch (err) {
+    next(err);
   }
+});
+
+app.use((err, _, res, __) => {
+  res.status(err.name ? 400 : err.status || 500).send({
+    success: false,
+    errors: err.name ? { [err.name]: err.message } : { ...err, status: undefined },
+  });
 });
 
 const port = process.env.PORT || 8005;
