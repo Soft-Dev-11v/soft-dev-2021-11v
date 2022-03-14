@@ -41,11 +41,8 @@
         <div class="row justify-content-center mt-4">
             <div class="col-12 col-lg-8">
                 <div class="accordion" id="accordionExample1">
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingOne">
-                          
-                        </h2>
-                        
+                    <div class="accordion-item" id="headingOne">
+
                     </div>
                 </div>
             </div> 
@@ -69,13 +66,17 @@
         },
         success:function(data)
         {
-            $('button').remove();
+            $('.accordion-header').remove();
+            $('.accordion-body').remove();
+            $('.accordion-collapse').remove();
             for(recipie in data){
                 var value = data[recipie]
                 // var row = "<tr><td>" + value + "</td></tr>";
                 // $('#recipietable').append(row);
-                var buttonRow = "<h2 class=accordion-header id=headingOne><button class=accordion-button type=button data-bs-toggle=collapse data-bs-target=" + value + " aria-expanded=true aria-controls=collapseOne>" + value + "</button>";
+                var buttonRow = "<h2 class=accordion-header><button class=accordion-button type=button data-bs-toggle=collapse data-bs-target=#id" + recipie + " aria-expanded=true aria-controls=id" + recipie + ">" + value + "</button> </h2>";
                 $('#headingOne').append(buttonRow);
+                var body1 = "<div id=id" + recipie + " class=accordion-collapse collapse show aria-labelledby=headingOne data-bs-parent=#accordionExample1><div class=accordion-body>" + value + "</div> </div>";
+                $('#headingOne').append(body1);
             }
         }
         })
@@ -83,7 +84,7 @@
 </script>
 
 
-  
+
 
 {% endblock content %}
 
