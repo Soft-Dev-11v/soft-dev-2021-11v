@@ -66,7 +66,9 @@
         },
         success:function(data)
         {
-            $('.accordion-button').remove();
+            $('.accordion-header').remove();
+            $('.accordion-body').remove();
+            $('.accordion-collapse').remove();
             for(recipie in data){
                 var value = data[recipie]
                 // var row = "<tr><td>" + value + "</td></tr>";
