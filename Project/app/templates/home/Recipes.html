@@ -69,13 +69,12 @@
             $('.accordion-header').remove();
             $('.accordion-body').remove();
             $('.accordion-collapse').remove();
-            for(recipie in data){
-                var value = data[recipie]
-                // var row = "<tr><td>" + value + "</td></tr>";
-                // $('#recipietable').append(row);
-                var buttonRow = "<h2 class=accordion-header><button class=accordion-button type=button data-bs-toggle=collapse data-bs-target=#id" + recipie + " aria-expanded=true aria-controls=id" + recipie + ">" + value + "</button> </h2>";
+            for(i in data[0]){
+                var recipies = data[0][i]
+                var images = data[1][i]
+                var buttonRow = "<h2 class=accordion-header><button class=accordion-button type=button data-bs-toggle=collapse data-bs-target=#id" + i + " aria-expanded=true aria-controls=id" + i + ">" + recipies + "</button> </h2>";
                 $('#headingOne').append(buttonRow);
-                var body1 = "<div id=id" + recipie + " class=accordion-collapse collapse show aria-labelledby=headingOne data-bs-parent=#accordionExample1><div class=accordion-body>" + value + "</div> </div>";
+                var body1 = "<div id=id" + i + " class=accordion-collapse collapse show aria-labelledby=headingOne data-bs-parent=#accordionExample1><div class=accordion-body><img src=" + images + "></div> </div>";
                 $('#headingOne').append(body1);
             }
         }

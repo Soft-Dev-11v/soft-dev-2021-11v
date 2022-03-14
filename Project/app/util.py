@@ -46,6 +46,7 @@ class Recipie:
     ingredients = []
     def __init__(self, recipie):
         self.title = recipie["title"]
+        self.image = recipie["image"]
         self.id = recipie["id"]
         for i in recipie["usedIngredients"]:
             self.ingredients.append(Ingredient(i))

@@ -4,6 +4,7 @@ Copyright (c) 2019 - present AppSeed.us
 """
 
 # Python modules
+from email.mime import image
 import os, logging
 import spoonacular as sp
 
@@ -145,15 +146,18 @@ def recipies():
     form = RecipesForm(request.form)
     recipiesA = []
     recipies = []
+    images = []
     if request.method == 'POST':
         ingredients = request.form['ingredients']
         response = api.search_recipes_by_ingredients(ingredients)
         data = response.json()
+
         for i in data:
             recipiesA.append(util.Recipie(i))
         for i in recipiesA:
             recipies.append(i.title)
-        # print(recipies) 
-        return jsonify(recipies)  
-    return render_template('home/Recipes.html', form=form, recipies=recipies)
+            images.append(i.image)
+
+        return jsonify(recipies, images)  
+    return render_template('home/Recipes.html', form=form)
         
