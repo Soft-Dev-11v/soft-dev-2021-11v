@@ -44,7 +44,9 @@ class Recipie:
     title = ""
     id = 0
     ingredients = []
+    image = ""
     def __init__(self, recipie):
+        self.image = recipie["image"]
         self.title = recipie["title"]
         self.image = recipie["image"]
         self.id = recipie["id"]
