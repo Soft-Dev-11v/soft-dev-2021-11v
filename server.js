@@ -5,20 +5,22 @@ const { readImage } = require("./middleware");
 
 app.use(express.json());
 
-app.put("/image/:imageId", readImage, async (req, res, next) => {
+app.put("/image/:fileId", readImage, async (req, res, next) => {
   // Andreika
   try {
-    const imageId = req.params.imageId;
+    const {fileId, imageName} = req.params;
     await drive.files.update({
-      fileId: "", // TUKA PISHI
+    
+      fileId, 
       requestBody: {
         name: "image.jpg",
       },
       media: {
-        body: "", // TUKA PISHI
+        body: req.image.readable,
+        mimeType: req.image.mimetype
       },
     });
-    res.send(imageId);
+    res.send(fileId);
   } catch (err) {
     next(err);
   }
